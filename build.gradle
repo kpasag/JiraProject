@@ -1,20 +1,24 @@
 plugins {
     id 'java'
+    id 'application'
 }
-
-group = 'org.example'
-version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:6.0.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'com.google.apis:google-api-services-sheets:v4-rev20240514-2.0.0'
+    implementation 'com.google.auth:google-auth-library-oauth2-http:1.23.0'
+    implementation 'com.google.api-client:google-api-client:2.7.0'
 }
 
-test {
-    useJUnitPlatform()
+application {
+    mainClass = 'SheetJiraPoller'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
 }
